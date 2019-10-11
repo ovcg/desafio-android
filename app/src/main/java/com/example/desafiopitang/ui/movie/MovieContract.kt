@@ -15,7 +15,7 @@ interface MovieContract {
     }
 
     interface Presenter : BaseContract.Presenter<View>{
-        fun loadMovies()
+        fun loadMovies(page:String, size:String)
         fun movieDetail(id : String)
     }
 

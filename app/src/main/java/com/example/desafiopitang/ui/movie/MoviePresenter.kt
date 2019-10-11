@@ -3,7 +3,6 @@ package com.example.desafiopitang.ui.movie
 import android.content.Context
 import com.example.desafiopitang.data.models.Movie
 import com.example.desafiopitang.network.ApiServiceInterface
-import com.example.desafiopitang.util.Constants
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
@@ -12,9 +11,8 @@ import javax.inject.Inject
 class MoviePresenter : MovieContract.Presenter{
 
     private val subscriptions = CompositeDisposable()
-    private val api: ApiServiceInterface = ApiServiceInterface.create(Constants.baseUrl)
+    private val api: ApiServiceInterface = ApiServiceInterface.create()
     private lateinit var view: MovieContract.View
-    private var url = ""
     lateinit var interactMovie :  MovieContract.GetMovieInteractor
 
     constructor()
@@ -23,13 +21,7 @@ class MoviePresenter : MovieContract.Presenter{
         this.interactMovie = interactor
     }
 
-    fun setUrl(url:String){
-        this.url = url
-    }
-
-    override fun subscribe() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
-    }
+    override fun subscribe() {}
 
     override fun unsubscribe() {
        subscriptions.clear()
@@ -41,12 +33,12 @@ class MoviePresenter : MovieContract.Presenter{
 
     override fun getContext(context: Context) {}
 
-    override fun loadMovies() {
+    override fun loadMovies(page:String, size:String) {
         view.showProgress(true)
 
-        val subscribe = api.getMovieList().subscribeOn(Schedulers.io())
+        val subscribe = api.getMovieList(page,size).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ list: List<Movie>? ->
+            .subscribe({ list: ArrayList<Movie>? ->
                 view.showProgress(false)
                 view.moviesResponse(list!!.take(10))
             }, { error ->

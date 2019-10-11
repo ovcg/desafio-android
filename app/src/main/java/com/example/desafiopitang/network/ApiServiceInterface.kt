@@ -6,21 +6,23 @@ import io.reactivex.Observable
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
+import retrofit2.http.Query
 
 interface ApiServiceInterface {
 
-    @GET("movies")
-    fun getMovieList(): Observable<List<Movie>>
+    @GET("list?")
+    fun getMovieList(@Query("page") page:String,
+                     @Query("size") size:String): Observable<ArrayList<Movie>>
 
-    @GET("detail")
+    @GET("detail?")
     fun getMovie(): Observable<Movie>
 
     companion object Factory {
-        fun create(url:String): ApiServiceInterface {
+        fun create(): ApiServiceInterface {
             val retrofit = retrofit2.Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(url)
+                .baseUrl(Constants.baseUrl)
                 .build()
 
             return retrofit.create(ApiServiceInterface::class.java)
