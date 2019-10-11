@@ -1,12 +1,11 @@
-package com.example.desafiopitang.di
+package com.example.desafiopitang
 
 import android.app.Application
-import com.example.desafiopitang.BuildConfig
 import com.example.desafiopitang.di.component.ApplicationComponent
+import com.example.desafiopitang.di.component.DaggerApplicationComponent
 import com.example.desafiopitang.di.modules.ApplicationModule
-import dagger.android.DaggerApplication
 
-class App : Application() {
+open class App : Application() {
 
         lateinit var component: ApplicationComponent
 
@@ -30,5 +29,4 @@ class App : Application() {
         companion object {
             lateinit var instance: App private set
         }
-    }
 }

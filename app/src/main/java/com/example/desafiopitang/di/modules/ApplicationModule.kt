@@ -1,7 +1,8 @@
 package com.example.desafiopitang.di.modules
 
 import android.app.Application
-import com.example.desafiopitang.di.App
+import com.example.desafiopitang.App
+import com.example.desafiopitang.di.scope.PerApplication
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton
@@ -11,8 +12,6 @@ class ApplicationModule (private val app: App) {
 
     @Provides
     @Singleton
-
-    fun provideApplication(): Application {
-        return app
-    }
+    @PerApplication
+    fun provideApplication(): Application = app
 }

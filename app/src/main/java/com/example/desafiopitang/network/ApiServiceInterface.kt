@@ -12,12 +12,15 @@ interface ApiServiceInterface {
     @GET("movies")
     fun getMovieList(): Observable<List<Movie>>
 
+    @GET("detail")
+    fun getMovie(): Observable<Movie>
+
     companion object Factory {
-        fun create(): ApiServiceInterface {
+        fun create(url:String): ApiServiceInterface {
             val retrofit = retrofit2.Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(Constants.baseUrl)
+                .baseUrl(url)
                 .build()
 
             return retrofit.create(ApiServiceInterface::class.java)
