@@ -1,6 +1,6 @@
 package com.example.desafiopitang.util.interfaces
 
 interface RecyclerViewImpl<T> {
-    fun clear()
+    fun clearList()
     fun addAll(list: ArrayList<T>)
 }

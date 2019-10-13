@@ -22,7 +22,7 @@ class MovieAdapter(
 ) : RecyclerView.Adapter<MovieAdapter.ViewHolder>(),
     RecyclerViewImpl<Movie>{
 
-    override fun clear() {
+    override fun clearList() {
         this.movies.clear()
         notifyItemRangeRemoved(0, this.movies.size)
     }
@@ -32,7 +32,7 @@ class MovieAdapter(
     }
 
     override fun addAll(list: ArrayList<Movie>) {
-        clear()
+        clearList()
         this.movies.addAll(list)
         notifyDataSetChanged()
     }

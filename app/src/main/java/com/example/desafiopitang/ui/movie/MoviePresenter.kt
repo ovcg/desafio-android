@@ -1,6 +1,5 @@
 package com.example.desafiopitang.ui.movie
 
-import android.content.Context
 import com.example.desafiopitang.data.models.Movie
 import com.example.desafiopitang.network.ApiServiceInterface
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -8,18 +7,11 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
-class MoviePresenter : MovieContract.Presenter{
+class MoviePresenter @Inject constructor() : MovieContract.Presenter{
 
     private val subscriptions = CompositeDisposable()
     private val api: ApiServiceInterface = ApiServiceInterface.create()
     private lateinit var view: MovieContract.View
-    lateinit var interactMovie :  MovieContract.GetMovieInteractor
-
-    constructor()
-
-    @Inject constructor(interactor: MovieContract.GetMovieInteractor){
-        this.interactMovie = interactor
-    }
 
     override fun subscribe() {}
 
@@ -31,9 +23,7 @@ class MoviePresenter : MovieContract.Presenter{
         this.view = view
     }
 
-    override fun getContext(context: Context) {}
-
-    override fun loadMovies(page:String, size:String) {
+    override fun loadMovies(page: String, size:String) {
         view.showProgress(true)
 
         val subscribe = api.getMovieList(page,size).subscribeOn(Schedulers.io())
