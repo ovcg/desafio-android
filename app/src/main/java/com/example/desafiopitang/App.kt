@@ -17,13 +17,8 @@ open class App : Application() {
         }
 
         private fun setup() {
-            component =  DaggerApplicationComponent.builder()
-                        .applicationModule(ApplicationModule(this)).build()
+            component =  DaggerApplicationComponent.builder().build()
             component.inject(this)
-        }
-
-        fun getApplicationComponent(): ApplicationComponent {
-            return component
         }
 
         companion object {

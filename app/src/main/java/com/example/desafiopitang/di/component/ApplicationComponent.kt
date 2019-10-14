@@ -8,7 +8,5 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [ApplicationModule::class])
 interface ApplicationComponent {
-
     fun inject(app: App)
-
 }

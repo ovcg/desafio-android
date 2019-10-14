@@ -1,19 +1,19 @@
-package com.example.desafiopitang.ui.movie
+package com.example.desafiopitang.ui.moviehistory
 
+import android.content.Context
 import com.example.desafiopitang.data.models.Movie
 import com.example.desafiopitang.ui.base.BaseContract
 
-interface MovieContract {
+interface MovieHistoryContract {
 
     interface View : BaseContract.View{
-        fun onSuccess(msg : String)
-        fun onError(msg : String)
         fun showProgress(show : Boolean)
-        fun moviesResponse(movies : List<Movie>)
+        fun onError(msg : String)
+        fun getMovies(movies : List<Movie>)
     }
 
     interface Presenter : BaseContract.Presenter<View>{
-        fun loadMovies(page:String, size:String)
+        fun loadMovies(ctx : Context, key : String)
     }
 
 }

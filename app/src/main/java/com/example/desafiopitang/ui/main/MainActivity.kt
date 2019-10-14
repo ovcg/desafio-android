@@ -5,8 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.desafiopitang.R
 import com.example.desafiopitang.di.component.DaggerActivityComponent
-import com.example.desafiopitang.di.modules.MainModule
-import com.example.desafiopitang.ui.movie.HistoryListFragment
+import com.example.desafiopitang.ui.moviehistory.HistoryListFragment
 import com.example.desafiopitang.ui.movie.MoviesFragment
 import com.example.desafiopitang.util.Constants
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -54,6 +53,11 @@ class MainActivity : AppCompatActivity(), MainContract.View {
         else {
             this.showMoviesFragment()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        presenter.unsubscribe()
     }
 
     private fun injectDependency(){
