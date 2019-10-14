@@ -30,11 +30,10 @@ class MoviePresenter @Inject constructor() : MovieContract.Presenter{
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe({ list: ArrayList<Movie>? ->
                 view.showProgress(false)
-                view.moviesResponse(list!!.take(10))
+                view.moviesResponse(list!!)
             }, { error ->
                 view.showProgress(false)
                 view.onError(error?.localizedMessage.toString())
-
             })
 
         subscriptions.add(subscribe)

@@ -54,11 +54,11 @@ class MovieDetailsActivity : AppCompatActivity(), MovieDetailContract.View{
     }
 
     override fun onError(msg: String) {
-        MsgUtil.showMsg(this, msg, rootView, true)
+        MsgUtil.showMsg( msg, rootView)
     }
 
     override fun getMovie(movieDetails: MovieDetails) {
-        val title = "Title: ${movieDetails.name}"
+        val title = "Title: \n${movieDetails.name}"
         val desc = "Description: \n${movieDetails.description}"
 
         tv_movie_name.text = title

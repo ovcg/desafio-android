@@ -14,7 +14,6 @@ import com.example.desafiopitang.ui.adapter.MovieAdapter
 import com.example.desafiopitang.ui.adapter.RecyclerItemDecoration
 import com.example.desafiopitang.ui.moviedetails.MovieDetailsActivity
 import com.example.desafiopitang.util.Constants
-import com.example.desafiopitang.util.GsonUtil
 import com.example.desafiopitang.util.MsgUtil
 import com.example.desafiopitang.util.interfaces.ClickMovieListener
 import kotlinx.android.synthetic.main.fragment_movies.*
@@ -75,7 +74,7 @@ class HistoryListFragment : Fragment() ,
     }
 
     override fun onError(msg: String) {
-        MsgUtil.showMsg(context!!, msg, rootView, true)
+        MsgUtil.showMsg(msg, rootView)
     }
 
     override fun showProgress(show: Boolean) {

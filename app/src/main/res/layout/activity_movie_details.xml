@@ -9,9 +9,11 @@
     android:id="@+id/cl_content">
 
     <ScrollView
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/scrollView">
+        android:id="@+id/scrollView"
+        android:layout_marginBottom="15dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/cl_movie_details"
@@ -39,7 +41,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/movie_title"
                 android:textColor="@color/titleColor"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -66,7 +67,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="24dp"
                 android:layout_marginEnd="16dp"
-                android:text="@string/description"
                 android:textColor="@color/descColor"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"

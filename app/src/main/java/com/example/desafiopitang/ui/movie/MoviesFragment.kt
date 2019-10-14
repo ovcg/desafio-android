@@ -94,7 +94,7 @@ class MoviesFragment : Fragment() ,
                 presenter.loadMovies(page.toString(), size.toString())
             }
             else{
-                showMsg(it,it.getString(R.string.internet_error), rootView, true)
+                showMsg(it.getString(R.string.internet_error), rootView)
             }
         }
     }
@@ -130,7 +130,7 @@ class MoviesFragment : Fragment() ,
     override fun onSuccess(msg: String) {}
 
     override fun onError(msg: String) {
-        showMsg(context!!,msg, rootView, true)
+        showMsg(msg, rootView)
     }
 
     override fun showProgress(show: Boolean) {
